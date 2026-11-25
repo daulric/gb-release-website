@@ -3,9 +3,9 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'GB Downloads — GitHub Releases',
+  title: 'Gradebook Downloads',
   description: 'Browse and download the latest packages and checksums from daulric-dev/gb releases on GitHub.',
-  generator: 'v0.app',
+  generator: 'daulric.dev',
   icons: {
     icon: '/logo.png',
     shortcut: '/logo.png',
