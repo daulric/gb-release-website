@@ -7,18 +7,15 @@ export const metadata: Metadata = {
   description: 'Browse and download the latest packages and checksums from daulric-dev/gb releases on GitHub.',
   generator: 'v0.app',
   icons: {
-    icon: [
-      { url: '/icon-light-32x32.png', media: '(prefers-color-scheme: light)' },
-      { url: '/icon-dark-32x32.png', media: '(prefers-color-scheme: dark)' },
-      { url: '/icon.svg', type: 'image/svg+xml' },
-    ],
-    apple: '/apple-icon.png',
+    icon: '/logo.png',
+    shortcut: '/logo.png',
+    apple: '/logo.png',
   },
 }
 
 export const viewport: Viewport = {
   colorScheme: 'light',
-  themeColor: '#f4eee6',
+  themeColor: '#f7f7f7',
 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

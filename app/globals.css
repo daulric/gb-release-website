@@ -108,7 +108,7 @@
   --chart-5: oklch(0.269 0 0);
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary: oklch(0.8 0 0);
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.269 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
@@ -144,7 +144,7 @@
     --chart-5: oklch(0.269 0 0);
     --sidebar: oklch(0.205 0 0);
     --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary: oklch(0.8 0 0);
     --sidebar-primary-foreground: oklch(0.985 0 0);
     --sidebar-accent: oklch(0.269 0 0);
     --sidebar-accent-foreground: oklch(0.985 0 0);
@@ -156,46 +156,46 @@
 :root,
 :root:not(.light) {
   color-scheme: light;
-  --background: oklch(0.95 0.025 75);
-  --foreground: oklch(0.27 0.025 45);
-  --card: oklch(0.97 0.02 75);
-  --card-foreground: oklch(0.27 0.025 45);
-  --popover: oklch(0.97 0.02 75);
-  --popover-foreground: oklch(0.27 0.025 45);
-  --primary: oklch(0.54 0.11 39);
-  --primary-foreground: oklch(0.98 0.015 75);
-  --secondary: oklch(0.91 0.035 72);
-  --secondary-foreground: oklch(0.31 0.03 48);
-  --muted: oklch(0.92 0.025 75);
-  --muted-foreground: oklch(0.52 0.025 50);
-  --accent: oklch(0.9 0.045 58);
-  --accent-foreground: oklch(0.31 0.03 48);
-  --destructive: oklch(0.58 0.19 25);
-  --border: oklch(0.86 0.035 67);
-  --input: oklch(0.86 0.035 67);
-  --ring: oklch(0.59 0.12 40);
+  --background: oklch(0.98 0 0);
+  --foreground: oklch(0.14 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.14 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.14 0 0);
+  --primary: oklch(0.15 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.94 0 0);
+  --secondary-foreground: oklch(0.14 0 0);
+  --muted: oklch(0.95 0 0);
+  --muted-foreground: oklch(0.48 0 0);
+  --accent: oklch(0.94 0 0);
+  --accent-foreground: oklch(0.14 0 0);
+  --destructive: oklch(0.42 0 0);
+  --border: oklch(0.88 0 0);
+  --input: oklch(0.88 0 0);
+  --ring: oklch(0.55 0 0);
 }
 
 .dark {
   color-scheme: light;
-  --background: oklch(0.95 0.025 75);
-  --foreground: oklch(0.27 0.025 45);
-  --card: oklch(0.97 0.02 75);
-  --card-foreground: oklch(0.27 0.025 45);
-  --popover: oklch(0.97 0.02 75);
-  --popover-foreground: oklch(0.27 0.025 45);
-  --primary: oklch(0.54 0.11 39);
-  --primary-foreground: oklch(0.98 0.015 75);
-  --secondary: oklch(0.91 0.035 72);
-  --secondary-foreground: oklch(0.31 0.03 48);
-  --muted: oklch(0.92 0.025 75);
-  --muted-foreground: oklch(0.52 0.025 50);
-  --accent: oklch(0.9 0.045 58);
-  --accent-foreground: oklch(0.31 0.03 48);
-  --destructive: oklch(0.58 0.19 25);
-  --border: oklch(0.86 0.035 67);
-  --input: oklch(0.86 0.035 67);
-  --ring: oklch(0.59 0.12 40);
+  --background: oklch(0.98 0 0);
+  --foreground: oklch(0.14 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.14 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.14 0 0);
+  --primary: oklch(0.15 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.94 0 0);
+  --secondary-foreground: oklch(0.14 0 0);
+  --muted: oklch(0.95 0 0);
+  --muted-foreground: oklch(0.48 0 0);
+  --accent: oklch(0.94 0 0);
+  --accent-foreground: oklch(0.14 0 0);
+  --destructive: oklch(0.42 0 0);
+  --border: oklch(0.88 0 0);
+  --input: oklch(0.88 0 0);
+  --ring: oklch(0.55 0 0);
 }
 
 @layer base {
@@ -204,7 +204,8 @@
   }
   body {
     @apply bg-background text-foreground;
-    background-image: radial-gradient(ellipse at 12% 0%, rgba(255, 255, 255, 0.72), transparent 42%), radial-gradient(ellipse at 92% 30%, rgba(225, 194, 164, 0.18), transparent 34%);
+    background-image: none;
+    background-color: #f7f7f7;
     min-height: 100vh;
   }
 }
@@ -213,26 +214,11 @@ main {
   background: transparent !important;
 }
 
-main header,
-main article,
-main section#install > div,
-main #releases > div > div:first-child,
-main #releases > div > div:nth-child(2) > button,
-main #releases > div > div:nth-child(3) > div:not([role="alert"]),
-main #top > div:nth-child(3) > div,
-main #top > div:nth-child(2) > div:last-child > div {
-  box-shadow: 7px 7px 18px rgba(130, 100, 73, 0.09), -7px -7px 18px rgba(255, 252, 246, 0.92);
-}
-
 main article {
-  border-color: rgba(218, 199, 178, 0.72);
+  border-color: rgba(0, 0, 0, 0.12);
   border-radius: 1.25rem;
 }
 
 main article > div:first-child {
-  border-color: rgba(218, 199, 178, 0.55);
-}
-
-main input {
-  box-shadow: inset 3px 3px 7px rgba(130, 100, 73, 0.08), inset -3px -3px 7px rgba(255, 252, 246, 0.82);
+  border-color: rgba(0, 0, 0, 0.08);
 }
