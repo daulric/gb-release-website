@@ -214,15 +214,6 @@ main {
   background: transparent !important;
 }
 
-main header,
-main article,
-main section#install > div,
-main #releases > div > div:nth-child(2) > button,
-main #releases > div > div:nth-child(3) > div:not([role="alert"]),
-main #top > div:nth-child(3) > div {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-}
-
 main article {
   border-color: rgba(0, 0, 0, 0.12);
   border-radius: 1.25rem;
@@ -230,8 +221,4 @@ main article {
 
 main article > div:first-child {
   border-color: rgba(0, 0, 0, 0.08);
-}
-
-main input {
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
 }
