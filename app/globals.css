@@ -217,11 +217,9 @@ main {
 main header,
 main article,
 main section#install > div,
-main #releases > div > div:first-child,
 main #releases > div > div:nth-child(2) > button,
 main #releases > div > div:nth-child(3) > div:not([role="alert"]),
-main #top > div:nth-child(3) > div,
-main #top > div:nth-child(2) > div:last-child > div {
+main #top > div:nth-child(3) > div {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
