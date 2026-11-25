@@ -68,7 +68,7 @@ export default function Page() {
       </header>
 
       <section id="top" className="mx-auto max-w-[1180px] px-5 pb-8 pt-12 lg:px-8 lg:pb-10 lg:pt-[68px]">
-        <div className="flex flex-wrap items-center gap-2 text-[12px] text-[#8b8f9b]"><span>Home</span><span className="text-[#c4c7ce]">/</span><span>Downloads</span><span className="text-[#c4c7ce]">/</span><span className="font-medium text-[#5e6270]">GB</span></div>
+        <div className="flex flex-wrap items-center gap-2 text-[12px] text-[#8b8f9b]"><span>Home</span><span className="text-[#c4c7ce]">/</span><span>Downloads</span><span className="text-[#c4c7ce]">/</span><span className="font-medium text-[#5e6270]">gradebook</span></div>
         <div className="mt-8 flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div><div className="mb-4 flex items-center gap-2"><span className="flex h-7 w-7 items-center justify-center rounded-md bg-[#242631] text-white"><GitHubMark size={15} /></span><span className="text-[13px] font-medium text-[#767b89]">{repositoryOwner} <span className="text-[#c0c3ca]">/</span> {repositoryName}</span><span className="rounded-full border border-[#dedede] bg-white px-2 py-0.5 text-[10px] font-medium text-[#747887]">Public</span></div><h1 className="text-[38px] font-semibold leading-[1.1] tracking-[-0.055em]">Releases</h1><p className="mt-3 max-w-[540px] text-[14px] leading-6 text-[#7a7f8d]">Browse releases for {repositoryOwner}/{repositoryName}. Download a package or checksum directly from GitHub.</p></div>
         </div>
