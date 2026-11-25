@@ -2,8 +2,9 @@
 
 import { useMemo, useState } from 'react'
 import useSWR from 'swr'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import { ArrowDownToLine, ArrowUpRight, Check, CircleHelp, Copy, FileArchive, GitBranch, HardDriveDownload, Search, ShieldCheck, Sparkles, Terminal } from 'lucide-react'
+import { ArrowDownToLine, ArrowUpRight, Check, CircleHelp, Copy, FileArchive, Search, ShieldCheck, Terminal } from 'lucide-react'
 
 type Asset = { id: number; name: string; platform: string; arch: string; size: string; downloads: number; browserDownloadUrl: string; digest: string | null }
 type Release = { id: number; version: string; title: string | null; date: string | null; tag: boolean; prerelease: boolean; notes: string; htmlUrl: string; assets: Asset[] }
@@ -18,7 +19,7 @@ const fetcher = async (url: string): Promise<ReleasesResponse> => {
 }
 
 function GitHubMark({ size = 18 }: { size?: number }) {
-  return <GitBranch size={size} strokeWidth={2} aria-hidden="true" />
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.084 1.84 1.236 1.84 1.236 1.07 1.834 2.807 1.304 3.492.997.108-.776.418-1.305.762-1.605-2.665-.303-5.466-1.332-5.466-5.93 0-1.31.47-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.895-.015 3.285 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg>
 }
 
 function formatDate(date: string | null) {
@@ -36,7 +37,6 @@ export default function Page() {
   const [filter, setFilter] = useState('All platforms')
   const [copied, setCopied] = useState(false)
   const releases = data?.releases ?? []
-  const totalDownloads = releases.reduce((total, release) => total + release.assets.reduce((assetTotal, asset) => assetTotal + asset.downloads, 0), 0)
   const visibleReleases = useMemo(() => releases.map((release) => ({
     ...release,
     assets: release.assets.filter((asset) => (filter === 'All platforms' || asset.platform === filter) && `${asset.name} ${asset.platform} ${asset.arch}`.toLowerCase().includes(query.toLowerCase())),
@@ -61,7 +61,7 @@ export default function Page() {
     <main className="min-h-screen bg-[#f4eee6] text-[#151821]">
       <header className="border-b border-[#e6d9cb] bg-white">
         <div className="mx-auto flex h-[68px] max-w-[1180px] items-center justify-between px-5 lg:px-8">
-          <a href="#top" className="flex items-center gap-2.5 font-semibold tracking-[-0.03em]" aria-label="GB downloads home"><span className="flex h-8 w-8 items-center justify-center rounded-[10px] bg-[#b76549] text-white"><Sparkles size={17} /></span><span className="text-[17px]">Gradebook</span></a>
+          <a href="#top" className="flex items-center gap-2.5 font-semibold tracking-[-0.03em]" aria-label="GB downloads home"><Image src="/logo.png" alt="" width={32} height={32} className="rounded-[10px]" /><span className="text-[17px]">Gradebook</span></a>
           <nav className="hidden items-center gap-8 text-[13px] font-medium text-[#707584] sm:flex"><a className="text-[#272a35]" href="#releases">Releases</a><a className="transition hover:text-[#272a35]" href="#install">Installation</a><a className="transition hover:text-[#272a35]" href={`${repositoryUrl}/releases`} target="_blank" rel="noreferrer">Release page <ArrowUpRight size={13} className="ml-0.5 inline" /></a></nav>
           <a href={repositoryUrl} target="_blank" rel="noreferrer" className="flex h-9 items-center gap-2 rounded-lg border border-[#e6d9cb] px-3 text-[12px] font-semibold transition hover:border-[#bfc3cd] hover:bg-[#fafbfc]"><GitHubMark size={15} /><span className="hidden sm:inline">View on GitHub</span><span className="sm:hidden">GitHub</span></a>
         </div>
@@ -71,9 +71,8 @@ export default function Page() {
         <div className="flex flex-wrap items-center gap-2 text-[12px] text-[#8b8f9b]"><span>Home</span><span className="text-[#c4c7ce]">/</span><span>Downloads</span><span className="text-[#c4c7ce]">/</span><span className="font-medium text-[#5e6270]">GB</span></div>
         <div className="mt-8 flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div><div className="mb-4 flex items-center gap-2"><span className="flex h-7 w-7 items-center justify-center rounded-md bg-[#242631] text-white"><GitHubMark size={15} /></span><span className="text-[13px] font-medium text-[#767b89]">{repositoryOwner} <span className="text-[#c0c3ca]">/</span> {repositoryName}</span><span className="rounded-full border border-[#e6d9cb] bg-white px-2 py-0.5 text-[10px] font-medium text-[#747887]">Public</span></div><h1 className="text-[38px] font-semibold leading-[1.1] tracking-[-0.055em]">Releases</h1><p className="mt-3 max-w-[540px] text-[14px] leading-6 text-[#7a7f8d]">Browse releases for {repositoryOwner}/{repositoryName}. Download a package or checksum directly from GitHub.</p></div>
-          <div className="flex items-center gap-2 pb-1"><div className="flex items-center gap-1.5 rounded-lg border border-[#e8e9ed] bg-white px-3 py-2 text-xs text-[#737785]"><span className={`h-1.5 w-1.5 rounded-full ${error ? 'bg-[#e36d6d]' : isLoading ? 'bg-[#e5a444]' : 'bg-[#4cb782]'}`}/>{error ? 'Unable to load releases' : isLoading ? 'Checking GitHub…' : 'Synced with GitHub'}</div></div>
         </div>
-        <div className="mt-8 flex flex-wrap gap-2.5"><div className="flex items-center gap-2 rounded-lg border border-[#e9ddd0] bg-white px-3 py-2 text-xs text-[#626775]"><span className="font-semibold text-[#383b46]">Latest</span><span className="rounded bg-[#eaeaff] px-1.5 py-0.5 font-semibold text-[#b76549]">{isLoading ? 'Loading' : releases.find((release) => release.tag)?.version ?? 'No releases'}</span></div><div className="flex items-center gap-2 rounded-lg border border-[#e9ddd0] bg-white px-3 py-2 text-xs text-[#626775]"><ShieldCheck size={14} className="text-[#42a879]"/>Assets hosted by GitHub</div><div className="flex items-center gap-2 rounded-lg border border-[#e9ddd0] bg-white px-3 py-2 text-xs text-[#626775]"><HardDriveDownload size={14} className="text-[#858997]"/>{formatDownloads(totalDownloads)} recent downloads</div></div>
+        <div className="mt-8 flex flex-wrap gap-2.5"><div className="flex items-center gap-2 rounded-lg border border-[#e9ddd0] bg-white px-3 py-2 text-xs text-[#626775]"><span className="font-semibold text-[#383b46]">Latest</span><span className="rounded bg-[#eaeaff] px-1.5 py-0.5 font-semibold text-[#b76549]">{isLoading ? 'Loading' : releases.find((release) => release.tag)?.version ?? 'No releases'}</span></div><div className="flex items-center gap-2 rounded-lg border border-[#e9ddd0] bg-white px-3 py-2 text-xs text-[#626775]"><ShieldCheck size={14} className="text-[#42a879]"/>Assets hosted by GitHub</div></div>
       </section>
 
       <section id="releases" className="mx-auto max-w-[1180px] px-5 pb-16 lg:px-8">
